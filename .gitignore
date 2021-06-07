@@ -3,6 +3,7 @@
 node_modules
 assignment5/public/img/*
 !assignment5/public/img/no_image.png
+package-lock.json
 
 
 # MongoDB bind mount
