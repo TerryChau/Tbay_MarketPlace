@@ -1,0 +1,53 @@
+doctype html
+title tBay | A Fictitious Online Marketplace
+body
+    h1 tBay
+    h3 A Fictitious Online Marketplace
+    p Welcome #{user}!
+    a(href='../about') About tBay
+    br
+    a(href='../main') Back to tBay
+
+    h3 Current Listing
+    h4 #{entry.title}
+    p Author: #{entry.author}
+    p Price: #{entry.listPrice}
+    p Start Date: #{entry.startDate}
+    img(src=entry.image, width="400")
+
+    p Description: #{entry.description}
+    br
+    br
+    br
+
+    h3 Edit:
+
+    form#edit_new_item(method='POST', action="/item/"+entry._id)
+        |Title:
+        br
+        input(type='text', name='title', size="40", value=entry.title)
+        br
+        |Price:
+        br
+        input(type='number', name='listPrice', step='0.01', value=entry.listPrice, placeholder='0.00', min="0")
+        br
+        |Description:
+        br
+        textarea(type='text', name='description', form="edit_new_item", rows="6", cols="60", white-space=pre-wrap) #{entry.description}
+        br
+        input(type='hidden', name="image_upload", accept="image/png, image/jpeg, image/gif, image/jpg", value=entry._id)
+        br
+        input(type='submit', value='Submit')
+        br
+        br
+    h2 Delete:
+    form#delete_entry(method='POST', action="/item/delete/"+entry._id)
+        input(type='submit', value='Delete Entry!')
+        br
+        br
+        br
+        br
+
+
+
+

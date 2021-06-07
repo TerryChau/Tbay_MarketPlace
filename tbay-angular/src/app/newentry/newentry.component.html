@@ -1,0 +1,50 @@
+<div class="container">
+  <h3>List Something to Sell!</h3>
+  <form #createListingForm="ngForm" (ngSubmit)="save(createListingForm)">
+    <div class="form-group row">
+      <div class="col-lg-6 col-md-8 col-sm-9">
+        <label for="title" class="col-form-label"><b>Title:</b>
+        </label>
+        <input required minlength="2" #title="ngModel" placeholder="title" name="title" class="form-control"
+          [(ngModel)]="entry.title" />
+
+        <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.minlength"
+          class="alert alert-danger">
+          Title must be at least 2 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-md-8 col-sm-9">
+        <label for="listPrice" class="col-form-label"><b>Price ($):</b>
+        </label>
+        <input required min="0" #listPrice="ngModel" placeholder="1" name="listPrice" class="form-control"
+          [(ngModel)]="entry.listPrice" type="number" />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-md-8 col-sm-9">
+        <label for="description" class="col-form-label"><b>Description:</b>
+        </label>
+        <textarea placeholder="description" name="description" class="form-control" [(ngModel)]="entry.description"
+          rows="5"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-lg-6 col-md-8 col-sm-9">
+        <label for="file" class="col-form-label"><b>Select an Image File:</b>
+        </label>
+        <br>
+        <input type="file" name="file" (change)="handleFileInput($event.target)" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!createListingForm.valid">
+      Sell
+    </button>
+    &nbsp;
+    <button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
+  </form>
+</div>

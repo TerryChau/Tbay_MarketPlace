@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing the API for tBay</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body class="vsc-initialized">
+    <div class="container">
+      <h3>tBay API test</h3>
+      <p>Note: tBay API test is based on <a href='https://github.com/Harvard-DCE-CSCIE3/cscie31-spring2019/tree/master/09.1-express-rest-api/public'>https://github.com/Harvard-DCE-CSCIE3/cscie31-spring2019/tree/master/09.1-express-rest-api/public</a>.
+      <p>This HTML/JS page tests the tBay API by listing all; then creating, finding, modifying, and deleting a photo resource using
+      the REST API. A few notes:
+        <ul>
+          <li>API endpoints, property names and values for the example tBay app are hardcoded in the client-side /js/api.js file linked in this HTML page. </li>
+          <li>See the console for output as the process completes.</li>
+        </ul>
+      </p>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group"><label for="image">Image:</label><input class="form-control" id="image" type="file" name="image"></div>
+            <button class="btn btn-primary" id="testme" type="button">Test the API</button></form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/api.js"></script>
+  </body>
+</html>

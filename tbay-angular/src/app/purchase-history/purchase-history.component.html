@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>Purchases Made by {{ user }}</h3>
+  <p>Items: {{ getNumberOfEntries() }}</p>
+  <div class="row">
+    <div class="card-deck col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 card-margin" *ngFor="let entryUnit of entries">
+      <app-entry [entry]="entryUnit" [baseURL]="imageBaseURL"> </app-entry>
+    </div>
+  </div>
+
+  <!-- present warning to sell items when there are no purchased items. -->
+  <div *ngIf="!numEntries" class="alert alert-warning">
+    You did not buy anything.  Click on an <a routerLink="/gallery">item listed for sale</a> and buy item!
+  </div>
+</div>

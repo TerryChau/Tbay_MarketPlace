@@ -1,0 +1,14 @@
+.entryphoto img{
+  width: 400px;
+  padding: 1rem 0;
+}
+
+/* ensures that new lines are shown */
+.new-lines{
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.no-select{
+  user-select: none;
+}

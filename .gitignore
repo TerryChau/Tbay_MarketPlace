@@ -1,0 +1,11 @@
+.DS_Store
+.DS_Store?
+node_modules
+.env
+assignment5/public/img/*
+!assignment5/public/img/no_image.png
+
+
+# MongoDB bind mount
+tbay-mongo/mongo/data/
+

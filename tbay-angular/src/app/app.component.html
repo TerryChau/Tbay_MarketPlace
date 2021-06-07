@@ -1,0 +1,24 @@
+<div class="container">
+  <div style="text-align:center" class="no-select">
+    <a routerLink="/gallery/">
+      <img width="150" alt="tbay Logo" src="assets/img/tbay.png">
+    </a>
+    <p>
+      <b>Welcome {{ user }}! </b> (Not {{ user }}?  <a routerLink="/login/">Logout/Login</a>)
+    </p>
+  </div>
+  <div class="container no-select">
+    <div class="navLinks" style="text-align:center" >
+      <a class="btn btn-sm btn-outline-secondary" routerLink="/gallery">Current Listings</a>
+      &nbsp;
+      <a class="btn btn-sm btn-outline-secondary" routerLink="/list-sale">Sell An Item</a>
+      &nbsp;
+      <a class="btn btn-sm btn-outline-secondary" routerLink="/purchase-history">Purchase History</a>
+      &nbsp;
+      <a class="btn btn-sm btn-outline-secondary" routerLink="/about">About</a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+<br class="no-select">
+<br class="no-select">

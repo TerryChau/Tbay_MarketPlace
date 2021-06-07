@@ -1,0 +1,11 @@
+<div class="card bg-light">
+  <a routerLink="/detail/{{ entry._id }}">
+    <img class="card-img-top" src="{{ entry.displayurl }}" />
+    <div class="card-title" style="text-align: center">{{ entry.title }}</div>
+    <div class="card-text">
+      <b>Price: </b>${{ entry.listPrice.toFixed(2) }}<br />
+      <b>Seller: </b>{{ entry.author }}<br />
+      <b>List Date: </b>{{ entry.listDate | date:'medium'}}<br />
+    </div>
+  </a>
+</div>

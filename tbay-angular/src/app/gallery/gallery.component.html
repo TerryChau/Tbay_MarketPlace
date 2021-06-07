@@ -1,0 +1,17 @@
+<!--app-entry is defined in entry/entry.component.ts-->
+<div class="container">
+  <h3>Listing by All Users</h3>
+  <p>Items: {{ getNumberOfEntries() }}</p>
+  <div class="row">
+    <div class="card-deck col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 card-margin" *ngFor="let entryUnit of entries">
+      <app-entry [entry]="entryUnit" [baseURL]="imageBaseURL"> </app-entry>
+    </div>
+  </div>
+  <br>
+
+  <!-- present warning to sell items when there are no items for sale. -->
+  <div *ngIf="!numEntries" class="alert alert-warning">
+    There are no items to display. Be the first to <a routerLink="/list-sale">sell an item</a>!
+    <br>
+  </div>
+</div>

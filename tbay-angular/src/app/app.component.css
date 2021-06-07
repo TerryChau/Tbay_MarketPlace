@@ -1,0 +1,8 @@
+.navLinks{
+    padding: 0 1rem 1rem 0;
+    margin: 0;
+}
+
+.no-select{
+    user-select: none;
+}

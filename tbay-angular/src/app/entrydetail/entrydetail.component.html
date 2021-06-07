@@ -1,0 +1,126 @@
+
+<div class="container">
+  <div *ngIf="entry; then thenBlock1 else elseBlock1"></div>
+  <ng-template #thenBlock1>
+    <h3>{{ entry.title }}</h3>
+    <div class="entryphoto"><img src="{{ entrydisplayurl }}" /></div>
+    <div><b>Price: </b>${{ entry.listPrice.toFixed(2) }}</div>
+    <div><b>Seller: </b> {{ entry.author }}</div>
+    <div><b>Seller List Date: </b>{{ entry.listDate | date:'medium' }}</div>
+
+    <!-- For case when item is sold-->
+    <div *ngIf="isItemSold" >
+      <div><b>Buyer: </b> {{ entry.buyer }}</div>
+      <div><b>Purchase Date: </b>{{ entry.buyDate | date:'medium' }}</div>
+    </div>
+
+    <div><b>Description:</b></div>
+    <div class="new-lines">{{ entry.description }}</div>
+
+    <div class="no-select">
+    <br>
+
+    <div *ngIf="isItemSold; then thenBlock2 else elseBlock2"></div>
+    <!-- For case when item is sold-->
+    <ng-template #thenBlock2>
+      <div *ngIf="userSameAsEntryBuyer; then thenBlock3 else elseBlock3"></div>
+      <!-- list buttons here for userSameAsEntryBuyer-->
+      <ng-template #thenBlock3>
+        <div class="alert alert-info col-md-10 col-lg-8">
+          Congratulations on your purchase!
+        </div>
+        <button class="btn btn-danger" (click)="deleteEntry()">Delete From Purchase History</button>
+        &nbsp;
+        <button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
+      </ng-template>
+
+      <!-- list buttons here for !userSameAsEntryBuyer-->
+      <ng-template #elseBlock3>
+        <div class="alert alert-info col-md-10 col-lg-8">
+          You did not purchase this item.
+        </div>
+        <button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
+      </ng-template>
+    </ng-template>
+
+    <!-- For case when item is not sold-->
+    <ng-template #elseBlock2>
+      <div *ngIf="userSameAsEntrySeller; then thenBlock4 else elseBlock4"></div>
+      <!-- list buttons here for userSameAsEntrySeller-->
+      <ng-template #thenBlock4>
+        <div class="alert alert-info col-md-10 col-lg-8">
+          This item is unsold at the moment.  'Edit Listing' or 'Delete' item.
+        </div>
+        <button class="btn btn-primary" (click)="toggleEditMode()">Edit Listing</button>
+        &nbsp;
+        <button class="btn btn-danger" (click)="deleteEntry()">Delete</button>
+        &nbsp;
+        <button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
+      </ng-template>
+
+      <!-- list buttons here for !userSameAsEntrySeller-->
+      <ng-template #elseBlock4>
+        <button class="btn btn-success" (click)="buyItem()">Buy</button>
+        &nbsp;
+        <button class="btn btn-secondary" (click)="backClicked()">Cancel</button>
+      </ng-template>
+    </ng-template>
+
+    </div>
+  </ng-template>
+
+  <!-- for case when entry does not exists in DB -->
+  <ng-template #elseBlock1>
+    <div *ngIf="getEntryComplete" class="alert alert-danger">
+      There is an error with this entry.  Please proceed back to the <a routerLink="/gallery">home page</a>!
+    </div>
+  </ng-template>
+
+  <!-- when the Edit button is pressed -->
+  <div *ngIf="editDropDown">
+    <br>
+    <h3>Edit Listing</h3>
+    <form #createListingForm="ngForm" (ngSubmit)="update(createListingForm)">
+      <div class="form-group row">
+        <div class="col-lg-6 col-md-8 col-sm-9">
+          <label for="title" class="col-form-label"><b>Title:</b>
+          </label>
+          <input required minlength="2" #title="ngModel" placeholder="title" name="title" class="form-control"
+            [(ngModel)]="entryEdit.title" />
+  
+          <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.minlength"
+            class="alert alert-danger">
+            Title must be at least 2 characters long.
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <div class="col-lg-6 col-md-8 col-sm-9">
+          <label for="listPrice" class="col-form-label"><b>Price ($):</b>
+          </label>
+          <input required min="0" #listPrice="ngModel" placeholder="1" name="listPrice" class="form-control"
+            [(ngModel)]="entryEdit.listPrice" type="number" />
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <div class="col-lg-6 col-md-8 col-sm-9">
+          <label for="description" class="col-form-label"><b>Description:</b>
+          </label>
+          <textarea placeholder="description" name="description" class="form-control" [(ngModel)]="entryEdit.description"
+            rows="5"></textarea>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!createListingForm.valid">
+        Update Listing
+      </button>
+      &nbsp;
+      <button class="btn btn-secondary" (click)="toggleEditMode()">Cancel</button>
+    </form>
+    {{goToBottom()}}
+  </div>
+
+</div>
+

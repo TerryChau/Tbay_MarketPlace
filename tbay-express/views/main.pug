@@ -1,0 +1,47 @@
+doctype html
+title tBay | A Fictitious Online Marketplace
+body
+    h1 tBay
+    h3 A Fictitious Online Marketplace
+    p Welcome #{user}!
+    a(href='about') About tBay
+    
+    p(style={color:'red', background:'yellow'}, font_desc="bold") #{errorMessage}
+    
+    h3 Item Listing
+    ul
+        each entry in entries
+            li #{entry.title}
+            p Author: #{entry.author}
+            p Price: #{entry.listPrice}
+            p List Date: #{entry.listDate}
+            img(src=entry.image, width="300")
+            br
+            a(href='item/'+entry._id) Details / Edit
+            br
+            br
+    h3 Add New Item
+    p(style={color:'red', background:'yellow'}, font_desc="bold") #{errorMessage}
+    form#add_new_item(method='POST', action="/main", enctype="multipart/form-data")
+        |Title:
+        br
+        input(type='text', name='title' size="40")
+        br
+        |Price:
+        br
+        input(type='number', name='listPrice', step='0.01', placeholder='0.00', min="0")
+        br
+        |Description:
+        br
+        textarea(type='text', name='description', form="add_new_item", rows="6", cols="60")
+        br
+        input(type='file', name="image_upload", accept="image/png, image/jpeg, image/gif, image/jpg")
+        br
+        br
+        input(type='submit', value='Submit')
+        br
+        br
+        br
+        br
+
+
