@@ -26,7 +26,15 @@ This project requires `npm`, `node`, and `angular/cli`.  Check your distribution
 Installation instructions differ for localhost and for production copies of this program.  The following instructions are for running this application on localhost.
 
 ### MongoDB Container
-Before running the following applications, start MongoDB with instruction in `tbay-mongo/`.
+Before running the following applications, start MongoDB with `docker-compose build` then `docker-compose up`.
+
+Initial data is conveniently packaged in `entryschemas.json`.  This can be loaded into the database using the following steps:
+
+```
+docker cp entryschemas.json mongo_local:.
+docker exec -it mongo_local sh
+mongoimport --db tbay --collection entryschemas --file entryschemas.json
+```
 
 ### Express Application
 To run the Express application install node.js and npm.  Then run `npm install` in the `tbay-express` folder, and then run `npm start`.
@@ -57,23 +65,25 @@ Run the following steps in order.
 
 #### MongoDB Container
 
-Start MongoDB with instruction in `tbay-mongo/`.
+Start MongoDB with `docker-compose build`.
+
+Then run `nohup docker-compose up >/dev/null 2>&1 &`.
+
+Initial data is conveniently packaged in `entryschemas.json`.  This can be loaded into the database using the following steps:
+
+```
+docker cp entryschemas.json mongo_local:.
+docker exec -it mongo_local sh
+mongoimport --db tbay --collection entryschemas --file entryschemas.json
+```
 
 #### Angular Application
-To run the Angular application, in `tbay-angular/`, install `angular-cli`.  Then edit `environments/environments.prod.ts` so that it points to the current server.  An example for the .ts file is shown below.
-
-```
-export const environment = {                                                     
-   production: true,                                                              
-   apiurl: '<host address>:8080/',                                          
-   imageBaseURL: '<host address>:8080'                                      
-};
-```
+To run the Angular application, in `tbay-angular/`, install `angular-cli`.
 
 Then run `ng build --prod`.  This should create a `dist/` folder that is accessible from `<host address>:8080`, when the Express application is started.
 
 ### Express Application
-To run the Express application install node.js and npm.  Then run `npm install` in the `tbay-express` folder, and then run `npm start`.
+To run the Express application install node.js and npm.  Then run `npm install` in the `tbay-express` folder, and then run `nohup npm start >/dev/null 2>&1 &`.
 
 A browser can then point to `<host address>:8080` to view to the contents of the Angular distribution application.
 
