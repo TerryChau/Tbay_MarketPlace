@@ -39,10 +39,16 @@ app.use(logger('dev'))
 // routes
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/main', mainRouter)
-app.get('/about', aboutRouter)
+app.get('/about_es', aboutRouter)
 app.use('/item', itemRouter)
 app.use('/api', api_mainRouter)
+
+// for Angular Single Page Application
 app.use('/', express.static('../tbay-angular/dist/assignment6norouting/'))
+app.use('/gallery', express.static('../tbay-angular/dist/assignment6norouting/'))
+app.use('/list-sale', express.static('../tbay-angular/dist/assignment6norouting/'))
+app.use('/purchase-history', express.static('../tbay-angular/dist/assignment6norouting/'))
+app.use('/about', express.static('../tbay-angular/dist/assignment6norouting/'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
