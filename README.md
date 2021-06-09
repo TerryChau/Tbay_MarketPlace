@@ -1,6 +1,6 @@
 # TBay Online MarketPlace
 
-This repository contains an original web application developed as part of multiple assignments for 'CSCI E-31 Web Application Development using Node.JS'.  The application is built using  the MEAN stack and permits CRUD operation to list and buy items for sale.  The assignment instructions provided included in `assignment_instruction.md`.
+This repository contains an original web application developed as part of multiple assignments for 'CSCI E-31 Web Application Development using Node.JS'.  The application is built using the MEAN stack and permits CRUD operation to list and buy items for sale.  The assignment instructions are included in `assignment_instruction.md`.
 
 Functionalities, include:
 
